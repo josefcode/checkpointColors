@@ -7,15 +7,17 @@ import { Card } from './Card'
 
 // Aqui você irá escrever as suas funções de Validação, para verificar se o Formulário foi preenchido corretamente
 const Root = styled('div')({
+  width: '800px',
   marginTop: '5rem',
+  paddingInlineEnd: '20px',
+  paddingBlockStart: '20px',
   })
-const RootHeader = styled('div')({
 
-width: '1200px',
+const RootFormHeader = styled('div')({
 height: '209px',
-background: '#F4EBD0',
+background: '#bcece0',
 borderRadius: '12px',
-padding: '2rem'
+padding: '20px'
 })
 
 const Title = styled('h1')({
@@ -29,71 +31,100 @@ const Title = styled('h1')({
   fontWeight: 900,
   fontSize: '30px',
   lineHeight: '60px',
-  color: 'orange',
+  color: '#4C5270',
 })
 
 const Input = styled(TextField)({
-  width: '600px',
-  height: '48px',
-})
-const ButtonSubmit = styled(Button)({
-  float: 'right',
-  width: '200px',
-  height: '37px',
-  background: '#36CE7C',
-  borderRadius: '8px',
-  flexFlow: 'end'
+  width: '100%',
+
 })
 
+const ButtonSubmit = styled(Button)({
+ float: 'right',
+  width: '200px',
+  height: '35px',
+  background: '#f652a0',
+  borderRadius: '8px',
+})
+
+const RootCard = styled('div')({
+  display: 'flex',
+  gap: '58px',
+  flexWrap: 'wrap'
+})
+
+
 function App() {
-  // Aqui você irá criar os Estados para manipular os Inputs
+
 const [color, setColor] = useState('')
 const [name, setName] = useState('')
-const [card, setCard] = useState([{name:"", color: ''}])
+const [card, setCard] = useState([])
 
 
 function handleChangeColor(e){
   setColor(e.target.value)
 }
+
 function handleChangeName(e){
   setName(e.target.value)
 }
 
 function submit(e){
   e.preventDefault()
-  setCard(prev => [...prev, { name, color}])
+
+  const list = {name, color}
+  setCard(prev => [...prev, list])
+
   setColor('')
   setName('')
 }
-console.log(card)
+
 
   return (
-    <Root className="App">
-      <RootHeader>
+    
+  <Root className="App">
+
+    <RootFormHeader>
+
      <Title>Carga de estudiantes</Title>
-     <form style = {{width: '1200px'}} onSubmit = {submit}>
-      <div style ={{display: 'flex', gap: '10px', marginBottom: '20px'}}>
-      <Input 
-      type="text" 
-      label = "name"
-      value = {name || ''}
-      sx={{ input: { color: "grey" }, "label": {color: "grey"} }} 
-      onChange = {handleChangeName}
-      />
-      <Input 
-      type="text" 
-      label = "color"
-      value={color || ''}
-      sx={{ input: { color: "grey" }, "label": {color: "grey"} }} 
-      onChange = {handleChangeColor}
-      />
-      </div>
+
+      <form  onSubmit = {submit}>
+
+          <div style ={{display: 'flex', gap: '10px', marginBottom: '20px'}}>
+
+                <Input 
+                type="text" 
+                label = "name"
+                value = {name || ''}
+                sx={{ input: { color: "grey" }, "label": {color: "grey"} }} 
+                onChange = {handleChangeName}
+                size="small"
+                />
+                <Input 
+                type="text" 
+                label = "color"
+                value={color || ''}
+                sx={{ input: { color: "grey" }, "label": {color: "grey"} }} 
+                onChange = {handleChangeColor}
+                size="small"
+                />
+
+          </div>
+
       <ButtonSubmit variant="contained" type = 'submit' >Submit</ButtonSubmit>
+
      </form>
-     </RootHeader>
+
+  </RootFormHeader>
+
+     <Title>Cores favoritas</Title>
+
+     <RootCard>
       {
         card.map(item => <Card key = {item.name} name = {item.name} color = {item.color} />)
       }
+      </RootCard>
+
     </Root>
   )
 }

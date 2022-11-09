@@ -1,17 +1,23 @@
 //Este componente deverá receber dados por Props e mostrar as Informações em Tela
 import {  styled } from '@mui/system';
 
+
 const Root = styled('div')({
-  width: "200px",
-  borderRadius: '3px',
-  backgroundColor: 'green'
+  width: "350px",
+  borderRadius: '5px',
+  height: "8rem",
+  padding: '10px'
 })
 
 export function Card ({name, color}) {
   return (
+   
     <Root style = {{background: color}}>
-     <h1>{name}</h1>
-     <span>{color}</span>
+     <p>{name}</p>
+     <p>{color}</p>
     </Root>
+  
+ 
+
   )
 }
