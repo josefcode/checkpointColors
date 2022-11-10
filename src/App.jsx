@@ -21,12 +21,9 @@ padding: '20px'
 })
 
 const Title = styled('h1')({
-  postion: 'relative',
   textTransform: 'uppercase',
   width: '464px',
   height: '60px',
-  left: '32px',
-  top: '116px',
   fontStyle: 'normal',
   fontWeight: 900,
   fontSize: '30px',
@@ -60,9 +57,19 @@ const [color, setColor] = useState('')
 const [name, setName] = useState('')
 const [card, setCard] = useState([])
 
+const isValidHex = (hex) => {
+  if(!hex) return false;
+  
+  const strippedHex = hex.replace('#', '');
+  return strippedHex.length === 3 || strippedHex.length === 6;
+}
 
 function handleChangeColor(e){
-  setColor(e.target.value)
+  const colorValue = e.target.value
+  
+    setColor(colorValue)
+
+
 }
 
 function handleChangeName(e){
@@ -73,6 +80,9 @@ function submit(e){
   e.preventDefault()
 
   const list = {name, color}
+
+  if(!isValidHex(color)) return;
+  
   setCard(prev => [...prev, list])
 
   setColor('')

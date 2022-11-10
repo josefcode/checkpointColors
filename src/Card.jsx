@@ -8,13 +8,32 @@ const Root = styled('div')({
   height: "8rem",
   padding: '10px'
 })
+const Title = styled('h1')({
+  textTransform: 'uppercase',
+  fontStyle: 'normal',
+  fontWeight: 900,
+  fontSize: '20px',
+  color: '#4C5270',
+  margin: 0
+})
 
+const TextPosition = styled('div')({
+  position: 'relative',
+  top: '80px',
+  left: '5px'
+})
+
+const Paragraph = styled('p')`
+     margin: 0
+`
 export function Card ({name, color}) {
   return (
    
     <Root style = {{background: color}}>
-     <p>{name}</p>
-     <p>{color}</p>
+      <TextPosition >
+     <Paragraph>{name}</Paragraph>
+     <Title>{color}</Title>
+     </TextPosition>
     </Root>
   
  
