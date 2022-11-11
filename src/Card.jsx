@@ -13,7 +13,7 @@ const Title = styled('h1')({
   fontStyle: 'normal',
   fontWeight: 900,
   fontSize: '20px',
-  color: '#4C5270',
+  color: '#fbe698',
   margin: 0
 })
 
@@ -23,9 +23,12 @@ const TextPosition = styled('div')({
   left: '5px'
 })
 
-const Paragraph = styled('p')`
-     margin: 0
-`
+const Paragraph = styled('p')({
+  margin: 0,
+  color: '#fbe698',
+})
+     
+
 export function Card ({name, color}) {
   return (
    
